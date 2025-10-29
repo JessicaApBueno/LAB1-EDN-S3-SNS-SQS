@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Id": "default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "default_statement_ID",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "SQS:SendMessage",
+        "SQS:ReceiveMessage",
+        "SQS:DeleteMessage",
+        "SQS:GetQueueAttributes",
+        "SQS:SetQueueAttributes",
+        "SQS:ListQueues"
+      ],
+      "Resource": "arn:aws:sqs:us-east-1:{{AWS_ACCOUNT_ID}}:fila-eventos-s3-jessica-bueno-29-10-2025"
+    },
+    {
+      "Sid": "AllowSNSToSendMessageToSQS",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:us-east-1:{{AWS_ACCOUNT_ID}}:fila-eventos-s3-jessica-bueno-29-10-2025",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:sns:us-east-1:{{AWS_ACCOUNT_ID}}:notificacoes-s3-jessica-bueno-29-10-2025"
+        }
+      }
+    }
+  ]
+}

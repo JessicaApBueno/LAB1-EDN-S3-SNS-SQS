@@ -1,0 +1,12 @@
+{
+  "TopicConfigurations": [
+    {
+      "Id": "NotificarPutDelete",
+      "TopicArn": "arn:aws:sns:us-east-1:{{AWS_ACCOUNT_ID}}:notificacoes-s3-jessica-bueno-29-10-2025",
+      "Events": [
+        "s3:ObjectCreated:*",
+        "s3:ObjectRemoved:*"
+      ]
+    }
+  ]
+}
